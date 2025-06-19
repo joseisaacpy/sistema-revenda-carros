@@ -7,11 +7,46 @@
     <!-- CDN do Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 text-black">
+    <!-- header -->
     <header class="bg-red-600 text-white p-5">
-      <h1 class="text-4xl text-center text-white font-bold">
-        Sistema de Revenda de Carros
+      <h1 class="text-3xl font-bold text-center">
+        AutoCar - Sistema de Revenda
       </h1>
+      <!-- navbar -->
+      <nav class="flex justify-center space-x-4 my-4">
+        <a
+          href="/clientes"
+          class="bg-white text-black px-4 py-2 rounded font-bold text-center"
+          >Listar Clientes</a
+        >
+        <a
+          href="/veiculos"
+          class="bg-white text-black px-4 py-2 rounded font-bold text-center"
+          >Listar Veículos</a
+        >
+      </nav>
     </header>
+
+    <main class="">
+      <section
+        class="w-[100%] h-screen flex flex-col justify-center items-center text-center"
+        style="
+          background: url(https://images.pexels.com/photos/38570/lamborghini-car-speed-prestige-38570.jpeg)
+            no-repeat center center / cover fixed;
+        "
+      >
+        <h2 class="text-red-700 text-5xl font-bold mb-4">
+          Bem-vindo ao AutoCar
+        </h2>
+        <p class="text-white text-lg font-bold">
+          O melhor sistema de revenda de veículos!
+        </p>
+      </section>
+    </main>
+
+    <footer class="text-center bg-red-500 text-white p-4">
+      <p class="font-bold">&copy; 2025 AutoCar</p>
+    </footer>
   </body>
 </html>
