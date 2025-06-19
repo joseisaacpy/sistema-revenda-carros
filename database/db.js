@@ -1,8 +1,13 @@
 // Importa o módulo better-sqlite3
 import Database from "better-sqlite3";
+// Importa o módulo dotenv
+import dotenv from "dotenv";
 
 // Instancia o banco
-const db = new Database("./database/clientes.db");
+const db = new Database(process.env.DATABASE_URL);
+
+// Configura o dotenv
+dotenv.config();
 
 // Habilitar Foreign Keys
 db.pragma("foreign_keys = ON");

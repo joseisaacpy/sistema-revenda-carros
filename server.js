@@ -5,9 +5,13 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import clientesRoutes from "./routes/clientes.js";
 import veiculosRoutes from "./routes/veiculos.js";
+import dotenv from "dotenv";
+
+// CONFIGURAÇÃO DO DOTENV
+dotenv.config();
 
 // CONSTANTES
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
