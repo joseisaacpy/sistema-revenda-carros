@@ -4,7 +4,6 @@ async function listarVeiculos() {
   const data = await response.json();
   data.forEach((veiculo) => {
     const li = document.createElement("li");
-    const veiculoItem = document.createElement("div");
     data.forEach((veiculo) => {
       const li = document.createElement("li");
       li.innerHTML = `
