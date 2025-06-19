@@ -27,6 +27,12 @@ app.get("/cad-clientes", (req, res) => {
 app.get("/cad-veiculos", (req, res) => {
   res.sendFile(join(__dirname, "views", "cad-veiculos.html"));
 });
+app.get("/listar-clientes", (req, res) => {
+  res.sendFile(join(__dirname, "views", "listar-clientes.html"));
+});
+app.get("/listar-veiculos", (req, res) => {
+  res.sendFile(join(__dirname, "views", "listar-veiculos.html"));
+});
 
 // ROTAS DE API
 app.use("/api/clientes", clientesRoutes);

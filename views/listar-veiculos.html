@@ -3,15 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homepage</title>
-    <!-- CDN do Tailwind -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Lista de Veículos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100 text-black">
-    <!-- header -->
+  <body>
     <header class="bg-red-600 text-white p-5">
-      <h1 class="text-3xl font-bold text-center">
-        AutoCar - Sistema de Revenda
+      <h1 class="text-3xl text-center font-bold mb-6">
+        Lista de Veículos Cadastrados
       </h1>
       <!-- navbar -->
       <nav class="my-4">
@@ -55,23 +53,12 @@
       </nav>
     </header>
     <main>
-      <section
-        class="w-[100%] h-screen flex flex-col justify-center items-center text-center"
-        style="
-          background: url(https://images.pexels.com/photos/38570/lamborghini-car-speed-prestige-38570.jpeg)
-            no-repeat center center / cover fixed;
-        "
-      >
-        <h2 class="text-red-700 text-5xl font-bold mb-4">
-          Bem-vindo ao <span class="animate-pulse text-white">AutoCar</span>.
-        </h2>
-        <p class="text-white text-lg font-bold">
-          O melhor sistema de revenda de veículos!
-        </p>
+      <section>
+        <ul id="veiculos-cadastrados" class="space-y-4">
+          <!-- Itens de veículos irão aparecer aqui de forma dinâmica -->
+        </ul>
       </section>
     </main>
-    <footer class="text-center bg-red-500 text-white p-4">
-      <p class="font-bold">&copy; 2025 AutoCar</p>
-    </footer>
   </body>
+  <script src="/js/listar-veiculos.js"></script>
 </html>
