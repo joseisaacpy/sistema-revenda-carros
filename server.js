@@ -43,6 +43,6 @@ app.use("/api/clientes", clientesRoutes);
 app.use("/api/veiculos", veiculosRoutes);
 
 // OUVINTE
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
