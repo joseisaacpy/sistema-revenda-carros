@@ -25,6 +25,8 @@ db.prepare(
     modelo TEXT NOT NULL,
     marca TEXT NOT NULL,
     ano INTEGER,
+    preco REAL NOT NULL,
+    status TEXT NOT NULL,
     cliente_id INTEGER,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
   );`
