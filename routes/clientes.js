@@ -5,16 +5,16 @@ const router = express.Router();
 
 // Create
 router.post("/", (req, res) => {
-  const { nome, cpf, email, telefone } = req.body;
+  const { nome, cpf, dataNascimento, email, telefone } = req.body;
   if (!nome || !cpf || !telefone) {
-    return res
-      .status(400)
-      .json({ error: "Nome, CPF e Telefone são obrigatórios." });
+    return res.status(400).json({
+      error: "Nome, CPF e Telefone são obrigatórios.",
+    });
   }
   const stmt = db.prepare(
-    "INSERT INTO clientes (nome, cpf, email, telefone) VALUES (?, ?, ?, ?)"
+    "INSERT INTO clientes (nome, cpf, dataNascimento, email, telefone) VALUES (?, ?, ?, ?, ?)"
   );
-  stmt.run(nome, cpf, email, telefone);
+  stmt.run(nome, cpf, dataNascimento, email, telefone);
   res.status(201).json({ message: "Cliente criado com sucesso." });
 });
 
@@ -42,11 +42,11 @@ router.get("/:id", (req, res) => {
 // Update
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { nome, cpf, email, telefone } = req.body;
+  const { nome, cpf, dataNascimento, email, telefone } = req.body;
   const stmt = db.prepare(
-    "UPDATE clientes SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE id = ?"
+    "UPDATE clientes SET nome = ?, cpf = ?,dataNascimento = ?, email = ?, telefone = ? WHERE id = ?"
   );
-  const result = stmt.run(nome, cpf, email, telefone, id);
+  const result = stmt.run(nome, cpf, dataNascimento, email, telefone, id);
   if (result.changes === 0) {
     return res.status(404).json({ error: "Cliente não encontrado." });
   }

@@ -17,6 +17,7 @@ db.prepare(
   (id INTEGER PRIMARY KEY AUTOINCREMENT,
    nome TEXT NOT NULL,
    cpf TEXT NOT NULL,
+   dataNascimento date,
    email TEXT,
    telefone TEXT NOT NULL
    );`
