@@ -21,6 +21,10 @@ const __dirname = dirname(__filename);
 app.use(express.json());
 app.use(express.static(join(__dirname, "public")));
 
+// ROTAS DE API
+app.use("/api/clientes", clientesRoutes);
+app.use("/api/veiculos", veiculosRoutes);
+
 // ROTAS DE PÁGINAS
 app.get("/", (req, res) => {
   res.sendFile(join(__dirname, "views", "index.html"));
@@ -38,9 +42,6 @@ app.get("/listar-veiculos", (req, res) => {
   res.sendFile(join(__dirname, "views", "listar-veiculos.html"));
 });
 
-// ROTAS DE API
-app.use("/api/clientes", clientesRoutes);
-app.use("/api/veiculos", veiculosRoutes);
 
 // OUVINTE
 app.listen(port, "0.0.0.0", () => {

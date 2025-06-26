@@ -1,6 +1,9 @@
+// IMPORTS
+
 import express from "express";
 import db from "../database/db.js";
 
+// CONSTANTES
 const router = express.Router();
 
 // Create
