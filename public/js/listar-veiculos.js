@@ -23,4 +23,10 @@ async function listarVeiculos() {
   });
 }
 
+import { initMenuToggle } from "./menu.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  initMenuToggle();
+});
+
 listarVeiculos();
