@@ -4,11 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Cliente - AutoCar</title>
+    <!-- CDN do Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Fonte-Awesome -->
+    <script
+      src="https://kit.fontawesome.com/5432a0e64c.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body
-    class="bg-gray-100 flex flex-col items-center justify-center min-h-screen"
-  >
+  <body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-red-600 text-white p-4">
+      <nav
+        class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      >
+        <!-- Logo e botão do menu -->
+        <div class="flex justify-between items-center">
+          <h1 class="text-2xl md:text-3xl font-bold">Só Caminhonete</h1>
+          <button id="menu-button" class="md:hidden text-white text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Menu -->
+        <ul id="mobile-menu" class="flex-col md:flex md:flex-row gap-2 hidden">
+          <li>
+            <a
+              href="/"
+              title="Home"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/cad-clientes"
+              title="Cadastro de Clientes"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-user"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/cad-veiculos"
+              title="Cadastro de Veículos"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-car"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/listar-veiculos"
+              title="Listagem de Veículos"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-car mr-[-4px]"></i>
+              <i class="fas fa-car"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/listar-clientes"
+              title="Listagem de Clientes"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-users"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
     <main class="w-[100%] flex flex-col items-center p-3 rounded-2xl">
       <h1 class="text-3xl font-bold mb-6">Cadastrar Cliente</h1>
 
@@ -90,6 +159,6 @@
 
     <div id="msg" class="mt-4 text-green-600 font-medium"></div>
 
-    <script src="/js/cad-clientes.js"></script>
+    <script type="module" src="/js/cad-clientes.js"></script>
   </body>
 </html>

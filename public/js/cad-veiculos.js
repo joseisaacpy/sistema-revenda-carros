@@ -39,3 +39,11 @@ form.addEventListener("submit", async (e) => {
     msg.textContent = "Erro ao cadastrar veículo.";
   }
 });
+
+import { initMenuToggle } from "./menu.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  initMenuToggle();
+});
+
+listarClientes();
