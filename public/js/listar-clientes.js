@@ -1,14 +1,18 @@
-const clientes = document.getElementById("clientes-cadastrados");
 async function listarClientes() {
+  const clientes = document.getElementById("clientes-cadastrados");
   const response = await fetch("/api/clientes");
   const data = await response.json();
   data.forEach((cliente) => {
     const li = document.createElement("li");
+    let dataFormatada = new Date(cliente.dataNascimento).toLocaleDateString(
+      "pt-BR"
+    );
+
     li.innerHTML = `
           <div class="bg-white shadow-md p-4 rounded-md border border-gray-200">
             <p class="text-lg font-semibold">Nome: ${cliente.nome}</p>
             <p class="text-lg font-semibold">CPF: ${cliente.cpf}</p>
-            <p class="text-lg font-semibold">Data de Nascimento: ${cliente.dataNascimento}</p>
+            <p class="text-lg font-semibold">Data de Nascimento: ${dataFormatada}</p>
             <p class="text-lg font-semibold">E-mail: ${cliente.email}</p>
             <p class="text-lg font-semibold">Telefone: ${cliente.telefone}</p>
             <div class="mt-4 space-x-2">
@@ -20,6 +24,7 @@ async function listarClientes() {
     clientes.appendChild(li);
   });
 }
+
 import { initMenuToggle } from "./menu.js";
 
 document.addEventListener("DOMContentLoaded", () => {
