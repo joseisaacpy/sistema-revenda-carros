@@ -16,11 +16,20 @@
     <!-- Header -->
     <header class="bg-red-600 text-white p-4">
       <nav
-        class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-around gap-4"
       >
         <!-- Logo e botão do menu -->
-        <div class="flex justify-between items-center">
-          <h1 class="text-2xl md:text-3xl font-bold">Só Caminhonete</h1>
+        <div class="flex justify-between md:justify-around items-center">
+          <a
+            href="/"
+            class="flex items-center justify-center bg-black p-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-200"
+          >
+            <i class="fa-solid fa-car text-2xl"></i>
+            <span class="ml-2 inline-block font-medium md:text-2xl"
+              >Só Caminhonete</span
+            >
+          </a>
+
           <button id="menu-button" class="md:hidden text-white text-2xl">
             <i class="fas fa-bars"></i>
           </button>
@@ -93,7 +102,7 @@
             type="text"
             id="modelo"
             placeholder="Modelo"
-            class="w-full border p-2"
+            class="w-full border p-2 rounded-[8px]"
             required
           />
         </div>
@@ -106,7 +115,7 @@
             type="text"
             id="marca"
             placeholder="Marca"
-            class="w-full border p-2"
+            class="w-full border p-2 rounded-[8px]"
             required
           />
         </div>
@@ -119,7 +128,7 @@
             type="date"
             id="ano"
             placeholder="Ano do Veículo"
-            class="w-full border p-2"
+            class="w-full border p-2 rounded-[8px]"
           />
         </div>
 
@@ -131,7 +140,7 @@
             type="text"
             id="preco"
             placeholder="Preço"
-            class="w-full border p-2"
+            class="w-full border p-2 rounded-[8px]"
             required
           />
         </div>
@@ -140,7 +149,12 @@
           <label for="status" class="block text-gray-700 font-medium mb-1"
             >Status</label
           >
-          <select class="w-full border p-2" name="status" id="status" required>
+          <select
+            class="w-full border p-2 rounded-[8px]"
+            name="status"
+            id="status"
+            required
+          >
             <option value="" disabled selected>Selecione o status:</option>
             <option value="Disponivel">Disponível</option>
             <option value="Indisponivel">Indisponível</option>
@@ -149,7 +163,7 @@
 
         <button
           type="submit"
-          class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          class="w-full bg-green-500 text-white py-2 rounded-[8px] hover:bg-green-600"
         >
           Cadastrar
         </button>
