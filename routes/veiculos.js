@@ -22,6 +22,30 @@ router.post("/", (req, res) => {
   res.status(201).json({ message: "Veiculo criado com sucesso." });
 });
 
+// Teste de array
+router.post("/array", (req, res) => {
+  const dados = Array.isArray(req.body) ? req.body : [req.body];
+
+  const stmt = db.prepare(
+    "INSERT INTO veiculos (modelo, marca, ano, preco, status) VALUES (?, ?, ?, ?, ?)"
+  );
+
+  for (const veiculo of dados) {
+    const { modelo, marca, ano, preco, status } = veiculo;
+
+    if (!modelo || !marca || !ano || preco === undefined || !status) {
+      return res.status(400).json({
+        error:
+          "Modelo, Marca, Ano, Preco e Status são obrigatórios em todos os objetos.",
+      });
+    }
+
+    stmt.run(modelo, marca, ano, preco, status);
+  }
+
+  res.status(201).json({ message: "Veículos cadastrados com sucesso." });
+});
+
 // Read todos
 router.get("/", (req, res) => {
   const stmt = db.prepare("SELECT * FROM veiculos");
