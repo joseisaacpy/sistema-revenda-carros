@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "ngrok": "ngrok http 3000",
+    "dev-ngrok": "concurrently \"npm run dev\" \"npm run ngrok\""
   },
   "keywords": [],
   "author": "",
@@ -16,5 +18,8 @@
     "better-sqlite3": "^11.10.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }

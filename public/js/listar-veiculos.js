@@ -1,26 +1,9 @@
 async function listarVeiculos() {
   const veiculos = document.getElementById("veiculos-cadastrados");
-  // const veiculos = document.getElementById("veiculos-cadastrados");
   const response = await fetch("/api/veiculos");
   const data = await response.json();
-  // Lista os veículos em formato de card
-  // data.forEach((veiculo) => {
-  //   const li = document.createElement("li");
-  //   li.innerHTML = `
-  //         <div class="bg-white shadow-md p-4 rounded-md border border-gray-200">
-  //           <p class="text-lg font-semibold">Modelo: ${veiculo.modelo}</p>
-  //           <p class="text-lg font-semibold">Marca: ${veiculo.marca}</p>
-  //           <p class="text-lg font-semibold">Ano de Fabricação: ${veiculo.ano}</p>
-  //           <p class="text-lg font-semibold">Preço (R$): ${veiculo.preco}</p>
-  //           <div class="mt-4 space-x-2">
-  //             <button data-id="${veiculo.id}" data-name="${veiculo.modelo}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
-  //             <button data-id="${veiculo.id}" data-name="${veiculo.modelo}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Excluir</button>
-  //           </div>
-  //         </div>
-  //       `;
-  //   veiculos.appendChild(li);
-  //});
-
+  const tbody = veiculos.querySelector("tbody");
+  tbody.innerHTML = "";
   // Lista dos veículos em formato de tabela
   data.forEach((veiculo) => {
     const row = document.createElement("tr");
@@ -30,8 +13,40 @@ async function listarVeiculos() {
     <td class="border-2 border-gray-300 p-1">${veiculo.marca}</td>
     <td class="border-2 border-gray-300 p-1">${veiculo.ano}</td>
     <td class="border-2 border-gray-300 p-1">${veiculo.preco}</td>
+        <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
+  <button class="editar-veiculo text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${veiculo.id}" data-name="${veiculo.modelo}"><i class="fa-solid fa-pen-to-square"></i></button>
+  <button class="excluir-veiculo text-red-600 hover:text-red-800 cursor-pointer" data-id="${veiculo.id}" data-name="${veiculo.modelo}"><i class="fa-solid fa-trash"></i></button>
+</td>
     `;
-    veiculos.appendChild(row);
+    tbody.appendChild(row);
+  });
+
+  // seleciona os botões de editar e excluir
+  const editarVeiculos = document.querySelectorAll(".editar-veiculo");
+  const excluirVeiculos = document.querySelectorAll(".excluir-veiculo");
+
+  excluirVeiculos.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      const id = btn.dataset.id;
+      const name = btn.dataset.name;
+
+      const confirm = window.confirm(
+        `Tem certeza que deseja excluir o veículo ${name}?`
+      );
+
+      if (!confirm) return;
+
+      try {
+        const response = await fetch(`/api/veiculos/${id}`, {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          listarVeiculos(); // atualiza a lista de clientes
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    });
   });
 }
 import { initMenuToggle } from "./menu.js";
