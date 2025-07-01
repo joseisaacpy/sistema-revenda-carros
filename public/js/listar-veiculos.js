@@ -1,9 +1,28 @@
+// Função pra listar veículos em formato de tabela
 async function listarVeiculos() {
+  // Pega o elemento da tabela
   const veiculos = document.getElementById("veiculos-cadastrados");
+
+  // Pega os dados da API
   const response = await fetch("/api/veiculos");
+
+  // Pega os dados em formato JSON
   const data = await response.json();
+
+  // Pega o elemento tbody e limpa
   const tbody = veiculos.querySelector("tbody");
   tbody.innerHTML = "";
+
+  // Valida se tem veículos cadastrados
+  if (data.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum veiculo cadastrado</td>
+      </tr>
+    `;
+    return;
+  }
+
   // Lista dos veículos em formato de tabela
   data.forEach((veiculo) => {
     const row = document.createElement("tr");
@@ -18,10 +37,12 @@ async function listarVeiculos() {
   <button class="excluir-veiculo text-red-600 hover:text-red-800 cursor-pointer" data-id="${veiculo.id}" data-name="${veiculo.modelo}"><i class="fa-solid fa-trash"></i></button>
 </td>
     `;
+
+    // tbody recebe a linha
     tbody.appendChild(row);
   });
 
-  // seleciona os botões de editar e excluir
+  // Seleciona os botões de editar e excluir
   const editarVeiculos = document.querySelectorAll(".editar-veiculo");
   const excluirVeiculos = document.querySelectorAll(".excluir-veiculo");
 
@@ -41,7 +62,7 @@ async function listarVeiculos() {
           method: "DELETE",
         });
         if (response.ok) {
-          listarVeiculos(); // atualiza a lista de clientes
+          listarVeiculos(); // atualiza a lista de veiculos
         }
       } catch (error) {
         console.log(error);
@@ -49,10 +70,10 @@ async function listarVeiculos() {
     });
   });
 }
+// Chama a função de abrir o menu
 import { initMenuToggle } from "./menu.js";
 
+// Ao carregar a pagina chama a função de abrir o menu e listar os veiculos
 document.addEventListener("DOMContentLoaded", () => {
-  initMenuToggle();
+  initMenuToggle(), listarVeiculos();
 });
-
-listarVeiculos();

@@ -1,22 +1,40 @@
-// função pra listar clientes em formato de tabela
+// Função pra listar clientes em formato de tabela
 async function listarClientes() {
+  // Pega o elemento da tabela
   const clientes = document.getElementById("clientes-cadastrados");
+
+  // Pega os dados da API
   const response = await fetch("/api/clientes");
+
+  // Pega os dados em formato JSON
   const data = await response.json();
+
+  // Pega o elemento tbody e limpa
   const tbody = clientes.querySelector("tbody");
-  // limpa o conteudo da tabela
-  tbody.innerHTML = ""; // limpa a tabela antes de preencher
+  tbody.innerHTML = "";
+
+  // Valida se tem clientes cadastrados
+  if (data.length <= 0) {
+    tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum cliente cadastrado</td>
+        </tr>
+      `;
+  }
 
   data.forEach((cliente) => {
-    // data em formato brasileiro
+    // Data em formato brasileiro
     let dataFormatada = new Date(cliente.dataNascimento).toLocaleDateString(
       "pt-BR"
     );
-    // cria uma linha
+
+    // Cria uma linha
     const row = document.createElement("tr");
-    // adiciona class na linha
+
+    // Adiciona class na linha
     row.classList.add("border-2", "border-gray-300", "p-2");
-    // adiciona conteudo na linha
+
+    // Adiciona conteudo na linha
     row.innerHTML = `
     <td class="border-2 border-gray-300 p-1">${cliente.nome}</td>
     <td class="border-2 border-gray-300 p-1">${cliente.cpf}</td>
@@ -28,11 +46,12 @@ async function listarClientes() {
   <button class="excluir-cliente text-red-600 hover:text-red-800 cursor-pointer" data-id="${cliente.id}" data-name="${cliente.nome}"><i class="fa-solid fa-trash"></i></button>
 </td>
     `;
+
     // tbody recebe a linha
     tbody.appendChild(row);
   });
 
-  // seleciona os botões de editar e excluir
+  // Seleciona os botões de editar e excluir
   const editarClientes = document.querySelectorAll(".editar-cliente");
   const excluirClientes = document.querySelectorAll(".excluir-cliente");
 
@@ -52,7 +71,7 @@ async function listarClientes() {
           method: "DELETE",
         });
         if (response.ok) {
-          listarClientes(); // atualiza a lista de clientes
+          listarClientes(); // Atualiza a lista de clientes
         }
       } catch (error) {
         console.log(error);
@@ -61,10 +80,10 @@ async function listarClientes() {
   });
 }
 
+// Chama a função de abrir o menu
 import { initMenuToggle } from "./menu.js";
 
+// Ao carregar a pagina chama a função de abrir o menu e listar os clientes
 document.addEventListener("DOMContentLoaded", () => {
-  initMenuToggle();
+  initMenuToggle(), listarClientes();
 });
-
-listarClientes();
