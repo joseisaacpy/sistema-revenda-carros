@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homepage</title>
+    <title>Login</title>
     <!-- CDN do Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Fonte-Awesome -->
@@ -12,11 +12,58 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
-    <main>
-      <section>
-        <form action="/login" method="post"></form>
+  <body class="bg-gray-100 text-black">
+    <main
+      class="md:h-screen p-6 md:p-10 flex flex-col items-center justify-center"
+    >
+      <section class="h-full shadow-2xl grid grid-cols-1 md:grid-cols-2">
+        <form
+          action="/login"
+          method="post"
+          class="flex flex-col gap-4 bg-white p-6 md:p-10 rounded-l-lg"
+        >
+          <h2 class="text-2xl font-bold text-left uppercase">
+            Revenda<span class="text-red-900">Mais</span>
+          </h2>
+          <p class="text-sm md:text-base">
+            Olá, seja bem-vindo! Faça login para entrar no sistema.
+          </p>
+          <label for="email" class="font-medium md:text-xl">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="teste@gmail.com"
+            class="p-2 border rounded outline-none focus:ring-2 focus:ring-green-600"
+            required
+          />
+          <label for="senha" class="font-medium md:text-xl">Senha</label>
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            placeholder="testando123"
+            class="p-2 border rounded outline-none focus:ring-2 focus:ring-green-600"
+            required
+          />
+          <button
+            type="submit"
+            class="bg-green-600 hover:scale-105 transition-all duration-200 cursor-pointer text-white p-2 rounded-lg w-full md:w-[50%]"
+          >
+            <i class="fas fa-sign-in-alt mr-2"></i>
+            Entrar
+          </button>
+          <p class="text-red-600 text-left">E-mail ou senha inválidos.</p>
+        </form>
+        <div class="hidden md:block">
+          <img
+            src="https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg"
+            alt="Foto de carros em uma revenda"
+            class="rounded-r-lg w-full h-full object-cover"
+          />
+        </div>
       </section>
     </main>
   </body>
+  <script src="./js/login.js"></script>
 </html>

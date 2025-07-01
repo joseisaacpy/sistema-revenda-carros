@@ -29,6 +29,9 @@ app.use("/api/veiculos", veiculosRoutes);
 app.get("/", (req, res) => {
   res.sendFile(join(__dirname, "views", "index.html"));
 });
+app.get("/login", (req, res) => {
+  res.sendFile(join(__dirname, "views", "login.html"));
+});
 app.get("/cad-clientes", (req, res) => {
   res.sendFile(join(__dirname, "views", "cad-clientes.html"));
 });
@@ -41,7 +44,6 @@ app.get("/listar-clientes", (req, res) => {
 app.get("/listar-veiculos", (req, res) => {
   res.sendFile(join(__dirname, "views", "listar-veiculos.html"));
 });
-
 
 // OUVINTE
 app.listen(port, "0.0.0.0", () => {
