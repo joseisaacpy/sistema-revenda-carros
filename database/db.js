@@ -37,5 +37,19 @@ db.prepare(
   );`
 ).run();
 
+// Cria a tabela de vendas (relacionamento muitos para muitos)
+db.prepare(
+  `
+  CREATE TABLE IF NOT EXISTS vendas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data DATE NOT NULL DEFAULT CURRENT_DATE,
+    veiculo_id INTEGER NOT NULL,
+    cliente_id INTEGER NOT NULL,
+    FOREIGN KEY (veiculo_id) REFERENCES veiculos(id),
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+  );
+`
+).run();
+
 // Exporta o banco
 export default db;
