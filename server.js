@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import clientesRoutes from "./routes/clientes.js";
 import veiculosRoutes from "./routes/veiculos.js";
+import vendasRoutes from "./routes/vendas.js";
 import dotenv from "dotenv";
 
 // CONFIGURAÇÃO DO DOTENV
@@ -24,6 +25,7 @@ app.use(express.static(join(__dirname, "public")));
 // ROTAS DE API
 app.use("/api/clientes", clientesRoutes);
 app.use("/api/veiculos", veiculosRoutes);
+app.use("/api/vendas", vendasRoutes);
 
 // ROTAS DE PÁGINAS
 app.get("/", (req, res) => {
@@ -53,7 +55,6 @@ app.get("/listar-clientes", (req, res) => {
 app.get("/listar-veiculos", (req, res) => {
   res.sendFile(join(__dirname, "views", "listar-veiculos.html"));
 });
-
 
 // OUVINTE
 app.listen(port, "0.0.0.0", () => {

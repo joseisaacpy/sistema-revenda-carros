@@ -35,6 +35,7 @@ async function listarVeiculos() {
     <td class="border-2 border-gray-300 p-1">${Number(
       veiculo.preco
     ).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
+      <td class="border-2 border-gray-300 p-1">${veiculo.status}</td>
         <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
   <button class="editar-veiculo text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${
     veiculo.id
