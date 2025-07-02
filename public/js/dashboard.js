@@ -22,9 +22,9 @@ async function carregarDashboard() {
 
     if (vendas.length > 0) {
       const ultima = vendas[vendas.length - 1];
-      document.getElementById("ultima-venda").textContent = `${
-        ultima.veiculo
-      } - ${new Date(ultima.data).toLocaleDateString("pt-BR")}`;
+      document.getElementById("ultima-venda").textContent = `${new Date(
+        ultima.data
+      ).toLocaleDateString("pt-BR")}`;
     }
   } catch (err) {
     console.error("Erro ao carregar dados do dashboard", err);
