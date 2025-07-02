@@ -14,7 +14,7 @@ async function listarVeiculos() {
   tbody.innerHTML = "";
 
   // Valida se tem veículos cadastrados
-  if (data.length === 0) {
+  if (data.length === 0 || data.length === undefined) {
     tbody.innerHTML = `
       <tr>
         <td colspan="5" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum veiculo cadastrado</td>
@@ -25,16 +25,25 @@ async function listarVeiculos() {
 
   // Lista dos veículos em formato de tabela
   data.forEach((veiculo) => {
+    const anoFabricacao = new Date(veiculo.ano).getFullYear();
     const row = document.createElement("tr");
     row.classList.add("border-2", "border-gray-300", "p-2");
     row.innerHTML = `
-    <td class="border-2 border-gray-300 p-1">${veiculo.modelo}</td>
+    <td class="border-2 border-gray-300  p-1">${veiculo.modelo}</td>
     <td class="border-2 border-gray-300 p-1">${veiculo.marca}</td>
-    <td class="border-2 border-gray-300 p-1">${veiculo.ano}</td>
-    <td class="border-2 border-gray-300 p-1">${veiculo.preco}</td>
+    <td class="border-2 border-gray-300 p-1">${anoFabricacao}</td>
+    <td class="border-2 border-gray-300 p-1">${Number(
+      veiculo.preco
+    ).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
         <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
-  <button class="editar-veiculo text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${veiculo.id}" data-name="${veiculo.modelo}"><i class="fa-solid fa-pen-to-square"></i></button>
-  <button class="excluir-veiculo text-red-600 hover:text-red-800 cursor-pointer" data-id="${veiculo.id}" data-name="${veiculo.modelo}"><i class="fa-solid fa-trash"></i></button>
+  <button class="editar-veiculo text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${
+    veiculo.id
+  }" data-name="${
+      veiculo.modelo
+    }"><i class="fa-solid fa-pen-to-square"></i></button>
+  <button class="excluir-veiculo text-red-600 hover:text-red-800 cursor-pointer" data-id="${
+    veiculo.id
+  }" data-name="${veiculo.modelo}"><i class="fa-solid fa-trash"></i></button>
 </td>
     `;
 
