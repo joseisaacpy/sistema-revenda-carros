@@ -3,13 +3,17 @@ import express from "express";
 import db from "./database/db.js";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import clientesRoutes from "./routes/clientes.js";
-import veiculosRoutes from "./routes/veiculos.js";
-import vendasRoutes from "./routes/vendas.js";
 import dotenv from "dotenv";
 
 // CONFIGURAÇÃO DO DOTENV
 dotenv.config();
+
+// IMPORTS DAS ROTAS
+import clientesRoutes from "./routes/clientes.js";
+import carrosRoutes from "./routes/carros.js";
+// import vendasRoutes from "./routes/vendas.js";
+// import fornecedoresRoutes from "./routes/fornecedores.js";
+// import comprasCarrosRoutes from "./routes/comprasCarros.js";
 
 // CONSTANTES
 const port = process.env.PORT || 3000;
@@ -24,8 +28,10 @@ app.use(express.static(join(__dirname, "public")));
 
 // ROTAS DE API
 app.use("/api/clientes", clientesRoutes);
-app.use("/api/veiculos", veiculosRoutes);
-app.use("/api/vendas", vendasRoutes);
+app.use("/api/carros", carrosRoutes);
+// app.use("/api/vendas", vendasRoutes);
+// app.use("/api/fornecedores", fornecedoresRoutes);
+// app.use("/api/compras-carros", comprasCarrosRoutes);
 
 // ROTAS DE PÁGINAS
 app.get("/", (req, res) => {
@@ -44,8 +50,8 @@ app.get("/cad-clientes", (req, res) => {
   res.sendFile(join(__dirname, "views", "cad-clientes.html"));
 });
 
-app.get("/cad-veiculos", (req, res) => {
-  res.sendFile(join(__dirname, "views", "cad-veiculos.html"));
+app.get("/cad-carros", (req, res) => {
+  res.sendFile(join(__dirname, "views", "cad-carros.html"));
 });
 
 app.get("/listar-clientes", (req, res) => {
@@ -53,7 +59,12 @@ app.get("/listar-clientes", (req, res) => {
 });
 
 app.get("/listar-veiculos", (req, res) => {
-  res.sendFile(join(__dirname, "views", "listar-veiculos.html"));
+  res.sendFile(join(__dirname, "views", "listar-carros.html"));
+});
+
+// Rota 404
+app.use((req, res) => {
+  res.status(404).json({ error: "Rota nao encontrada." });
 });
 
 // OUVINTE
