@@ -1,55 +1,20 @@
-// Importa o módulo better-sqlite3
-import Database from "better-sqlite3";
+// Importa o pg
+import pg from "pg";
 // Importa o módulo dotenv
 import dotenv from "dotenv";
 // Configura o dotenv
 dotenv.config();
 
-// Instancia o banco
-const db = new Database(process.env.DATABASE_URL);
-
-// Habilitar Foreign Keys
-db.pragma("foreign_keys = ON");
-
-// Cria a tabela de clientes
-db.prepare(
-  `CREATE TABLE IF NOT EXISTS clientes
-  (id INTEGER PRIMARY KEY AUTOINCREMENT,
-   nome TEXT NOT NULL,
-   cpf TEXT NOT NULL,
-   dataNascimento date,
-   email TEXT,
-   telefone TEXT NOT NULL
-   );`
-).run();
-
-// Cria a tabela de veículos
-db.prepare(
-  `CREATE TABLE IF NOT EXISTS veiculos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    modelo TEXT NOT NULL,
-    marca TEXT NOT NULL,
-    ano INTEGER,
-    preco REAL NOT NULL,
-    status TEXT NOT NULL,
-    cliente_id INTEGER,
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
-  );`
-).run();
-
-// Cria a tabela de vendas (relacionamento muitos para muitos)
-db.prepare(
-  `
-  CREATE TABLE IF NOT EXISTS vendas (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    data DATE NOT NULL DEFAULT CURRENT_DATE,
-    veiculo_id INTEGER NOT NULL,
-    cliente_id INTEGER NOT NULL,
-    FOREIGN KEY (veiculo_id) REFERENCES veiculos(id),
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
-  );
-`
-).run();
+// Instancia o Postgre
+const { Pool } = pg;
+// Cria o pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
+});
 
 // Exporta o banco
-export default db;
+export default pool;
