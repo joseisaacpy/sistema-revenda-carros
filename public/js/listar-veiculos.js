@@ -4,7 +4,7 @@ async function listarVeiculos() {
   const veiculos = document.getElementById("veiculos-cadastrados");
 
   // Pega os dados da API
-  const response = await fetch("/api/veiculos");
+  const response = await fetch("/api/carros");
 
   // Pega os dados em formato JSON
   const data = await response.json();
@@ -68,7 +68,7 @@ async function listarVeiculos() {
       if (!confirm) return;
 
       try {
-        const response = await fetch(`/api/veiculos/${id}`, {
+        const response = await fetch(`/api/carros/${id}`, {
           method: "DELETE",
         });
         if (response.ok) {

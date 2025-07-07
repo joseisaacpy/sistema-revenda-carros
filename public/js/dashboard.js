@@ -6,12 +6,10 @@ async function carregarDashboard() {
     document.getElementById("total-clientes").textContent = clientes.length;
 
     // Veículos disponíveis
-    const veiculosRes = await fetch("/api/veiculos");
-    const veiculos = await veiculosRes.json();
-    const disponiveis = veiculos.filter(
-      (v) => v.status === "Disponivel"
-    ).length;
-    const vendidos = veiculos.filter((v) => v.status === "Indisponivel").length;
+    const carrosRes = await fetch("/api/carros");
+    const carros = await carrosRes.json();
+    const disponiveis = carros.filter((c) => c.status === "Disponivel").length;
+    const vendidos = carros.filter((c) => c.status === "Indisponivel").length;
 
     document.getElementById("veiculos-disponiveis").textContent = disponiveis;
     document.getElementById("veiculos-vendidos").textContent = vendidos;

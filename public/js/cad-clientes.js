@@ -39,5 +39,3 @@ import { initMenuToggle } from "./menu.js";
 document.addEventListener("DOMContentLoaded", () => {
   initMenuToggle();
 });
-
-listarClientes();

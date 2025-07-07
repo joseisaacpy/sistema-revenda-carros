@@ -18,7 +18,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("/api/veiculos", {
+    const res = await fetch("/api/carros", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(veiculo),
@@ -45,5 +45,3 @@ import { initMenuToggle } from "./menu.js";
 document.addEventListener("DOMContentLoaded", () => {
   initMenuToggle();
 });
-
-listarClientes();

@@ -64,7 +64,7 @@ app.get("/listar-veiculos", (req, res) => {
 
 // Rota 404
 app.use((req, res) => {
-  res.status(404).json({ error: "Rota nao encontrada." });
+  res.status(404).sendFile(join(__dirname, "views", "404.html"));
 });
 
 // OUVINTE
