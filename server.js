@@ -55,6 +55,10 @@ app.get("/cad-carros", (req, res) => {
   res.sendFile(join(__dirname, "views", "cad-carros.html"));
 });
 
+app.get("/cad-venda", (req, res) => {
+  res.sendFile(join(__dirname, "views", "cad-venda.html"));
+});
+
 app.get("/listar-clientes", (req, res) => {
   res.sendFile(join(__dirname, "views", "listar-clientes.html"));
 });

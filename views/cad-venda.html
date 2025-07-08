@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Venda</title>
+    <!-- CDN do Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Fonte-Awesome -->
+    <script
+      src="https://kit.fontawesome.com/5432a0e64c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-red-600 text-white p-4">
+      <nav
+        class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-around gap-4"
+      >
+        <!-- Logo e botão do menu -->
+        <div class="flex justify-between md:justify-around items-center">
+          <a
+            href="/"
+            class="flex items-center justify-center bg-black p-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-200"
+          >
+            <i class="fa-solid fa-car text-2xl"></i>
+            <span class="ml-2 inline-block font-medium md:text-2xl"
+              >Só Caminhonete</span
+            >
+          </a>
+
+          <button id="menu-button" class="md:hidden text-white text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Menu -->
+        <ul id="mobile-menu" class="flex-col md:flex md:flex-row gap-2 hidden">
+          <li>
+            <a
+              href="/"
+              title="Home"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/dashboard"
+              title="Dashboard"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-tachometer-alt"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/cad-clientes"
+              title="Cadastro de Clientes"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-user"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/cad-carros"
+              title="Cadastro de Veículos"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-car"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/listar-carros"
+              title="Listagem de Veículos"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-car mr-[-4px]"></i>
+              <i class="fas fa-car"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/listar-clientes"
+              title="Listagem de Clientes"
+              class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
+            >
+              <i class="fas fa-users"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="w-[100%] flex flex-col items-center p-3 rounded-2xl">
+      <h1 class="text-3xl font-bold mb-6">Cadastrar Venda</h1>
+
+      <!-- Formulário de Cadastro de Cliente -->
+      <form
+        id="vendaForm"
+        class="w-[100%] md:w-[50%] bg-white p-6 rounded shadow-2xl space-y-4"
+      >
+        <!--Opções de Cliente -->
+        <div>
+          <label
+            for="select-clientes"
+            class="block text-gray-700 font-medium mb-1"
+            >Cliente</label
+          >
+          <select
+            type="text"
+            id="select-clientes"
+            class="w-full border p-2 rounded-[8px]"
+            required
+          >
+            <option disabled selected>Selecione um cliente</option>
+            <!-- Opcões irão aparecer aqui dinamicamente -->
+          </select>
+        </div>
+        <!--Opções de Carros -->
+        <div>
+          <label
+            for="select-carros"
+            class="block text-gray-700 font-medium mb-1"
+            >Carro</label
+          >
+          <select
+            type="text"
+            id="select-carros"
+            class="w-full border p-2 rounded-[8px]"
+            required
+          >
+            <option disabled selected>Selecione um carro</option>
+            <!-- Opcões irão aparecer aqui dinamicamente -->
+          </select>
+        </div>
+        <!-- Data da Venda -->
+        <div>
+          <label for="data-venda" class="block text-gray-700 font-medium mb-1"
+            >Data da Venda (Se vazio, gera data atual)</label
+          >
+          <input
+            type="date"
+            id="data-venda"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+        <!-- Valor final da venda -->
+        <div>
+          <label
+            for="valor-final-venda"
+            class="block text-gray-700 font-medium mb-1"
+            >Valor Final da Venda</label
+          >
+          <input
+            type="number"
+            id="valor-final-venda"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+        <!-- Método de Pagamento -->
+        <div>
+          <label
+            for="metodo-pagamento"
+            class="block text-gray-700 font-medium mb-1"
+            >Método de Pagamento</label
+          >
+          <select
+            type="text"
+            id="metodo-pagamento"
+            class="w-full border p-2 rounded-[8px]"
+          >
+            <option value="" disabled selected>Selecione</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de Crédito">Cartão de Crédito</option>
+            <option value="Cartão de Débito">Cartão de Débito</option>
+            <option value="Boleto">Boleto</option>
+            <option value="Pix">Pix</option>
+          </select>
+        </div>
+
+        <!-- Observaçoes da Venda -->
+        <div>
+          <label
+            for="observacao-venda"
+            class="block text-gray-700 font-medium mb-1"
+            >Observações</label
+          >
+          <textarea
+            id="observacao-venda"
+            class="w-full border p-2 rounded-[8px]"
+            maxlength="255"
+          ></textarea>
+        </div>
+
+        <!-- Botão -->
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-white py-2 rounded-[8px] hover:bg-green-600 cursor-pointer"
+        >
+          Cadastrar
+        </button>
+
+        <!-- Mensagem -->
+        <div id="msg" class="text-green-600 font-medium text-center"></div>
+      </form>
+    </main>
+
+    <script type="module" src="./js/cad-venda.js"></script>
+  </body>
+</html>
