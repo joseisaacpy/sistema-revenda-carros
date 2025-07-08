@@ -7,17 +7,46 @@ import db from "../database/db.js";
 const router = express.Router();
 
 // Create
+// Create
 router.post("/", async (req, res) => {
-  const { nome, cpf, dataNascimento, email, telefone } = req.body;
-  if (!nome || !cpf || !telefone) {
+  const {
+    nome,
+    cpf_cnpj,
+    dataNascimento,
+    email,
+    telefone,
+    cep,
+    rua,
+    numero,
+    bairro,
+    cidade,
+    estado,
+  } = req.body;
+
+  if (!nome || !cpf_cnpj || !telefone) {
     return res.status(400).json({
-      error: "Nome, CPF e Telefone são obrigatórios.",
+      error: "Nome, CPF/CNPJ e Telefone são obrigatórios.",
     });
   }
+
   try {
     await db.query(
-      `INSERT INTO clientes (nome, cpf_cnpj, dataNascimento, email, telefone_celular) VALUES ($1, $2, $3, $4, $5)`,
-      [nome, cpf, dataNascimento, email, telefone]
+      `INSERT INTO clientes 
+      (nome, cpf_cnpj, dataNascimento, email, telefone_celular, cep, rua, numero, bairro, cidade, estado)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+      [
+        nome,
+        cpf_cnpj,
+        dataNascimento || null,
+        email || null,
+        telefone,
+        cep || null,
+        rua || null,
+        numero || null,
+        bairro || null,
+        cidade || null,
+        estado || null,
+      ]
     );
     res.status(201).json({ message: "Cliente criado com sucesso." });
   } catch (error) {
@@ -54,17 +83,49 @@ router.get("/:id", async (req, res) => {
 });
 
 // Update
+// Update
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { nome, cpf, dataNascimento, email, telefone } = req.body;
+    const {
+      nome,
+      cpf_cnpj,
+      dataNascimento,
+      email,
+      telefone,
+      cep,
+      rua,
+      numero,
+      bairro,
+      cidade,
+      estado,
+    } = req.body;
+
     const result = await db.query(
-      "UPDATE clientes SET nome=$1, cpf=$2, dataNascimento=$3, email=$4, telefone=$5 WHERE id=$6",
-      [nome, cpf, dataNascimento, email, telefone, id]
+      `UPDATE clientes 
+       SET nome=$1, cpf_cnpj=$2, dataNascimento=$3, email=$4, telefone_celular=$5,
+           cep=$6, rua=$7, numero=$8, bairro=$9, cidade=$10, estado=$11
+       WHERE id=$12`,
+      [
+        nome,
+        cpf_cnpj,
+        dataNascimento || null,
+        email || null,
+        telefone,
+        cep || null,
+        rua || null,
+        numero || null,
+        bairro || null,
+        cidade || null,
+        estado || null,
+        id,
+      ]
     );
+
     if (result.rowCount === 0) {
-      return res.status(404).json({ error: "Cliente nao encontrado." });
+      return res.status(404).json({ error: "Cliente não encontrado." });
     }
+
     res.json({ message: "Cliente atualizado com sucesso." });
   } catch (error) {
     console.error("Erro ao atualizar o cliente", error);

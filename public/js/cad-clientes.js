@@ -7,7 +7,7 @@ form.addEventListener("submit", async (e) => {
   // Coleta de dados do formulário
   const cliente = {
     nome: document.getElementById("nome").value.trim(),
-    cpf: document.getElementById("cpf").value.trim(),
+    cpf_cnpj: document.getElementById("cpf_cnpj").value.trim(),
     dataNascimento: document.getElementById("data-nasc").value,
     email: document.getElementById("email").value.trim(),
     telefone: document.getElementById("telefone").value.trim(),

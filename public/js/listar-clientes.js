@@ -36,15 +36,31 @@ async function listarClientes() {
 
     // Adiciona conteudo na linha
     row.innerHTML = `
-    <td class="border-2 border-gray-300 p-1">${cliente.nome}</td>
-    <td class="border-2 border-gray-300 p-1">${cliente.cpf}</td>
-    <td class="border-2 border-gray-300 p-1">${dataFormatada}</td>
-    <td class="border-2 border-gray-300 p-1">${cliente.email}</td>
-    <td class="border-2 border-gray-300 p-1">${cliente.telefone}</td>
-    <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
-  <button class="editar-cliente text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${cliente.id}" data-name="${cliente.nome}"><i class="fa-solid fa-pen-to-square"></i></button>
-  <button class="excluir-cliente text-red-600 hover:text-red-800 cursor-pointer" data-id="${cliente.id}" data-name="${cliente.nome}"><i class="fa-solid fa-trash"></i></button>
-</td>
+   <td class="border-2 border-gray-300 p-1">${cliente.nome}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.cpf_cnpj}</td>
+  <td class="border-2 border-gray-300 p-1">${dataFormatada}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.email || "-"}</td>
+  <td class="border-2 border-gray-300 p-1">${
+    cliente.telefone_celular || "-"
+  }</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.cep || "-"}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.rua || "-"}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.numero || "-"}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.bairro || "-"}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.cidade || "-"}</td>
+  <td class="border-2 border-gray-300 p-1">${cliente.estado || "-"}</td>
+  <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
+    <button class="editar-cliente text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${
+      cliente.id
+    }" data-name="${cliente.nome}">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button>
+    <button class="excluir-cliente text-red-600 hover:text-red-800 cursor-pointer" data-id="${
+      cliente.id
+    }" data-name="${cliente.nome}">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+  </td>
     `;
 
     // tbody recebe a linha
