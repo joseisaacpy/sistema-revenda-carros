@@ -102,10 +102,12 @@
     <main class="w-[100%] flex flex-col items-center p-3 rounded-2xl">
       <h1 class="text-3xl font-bold mb-6">Cadastrar Cliente</h1>
 
+      <!-- Formulário de Cadastro de Cliente -->
       <form
         id="clienteForm"
         class="w-[100%] md:w-[50%] bg-white p-6 rounded shadow space-y-4"
       >
+        <!-- Nome -->
         <div>
           <label for="nome" class="block text-gray-700 font-medium mb-1"
             >Nome</label
@@ -119,6 +121,7 @@
           />
         </div>
 
+        <!-- CPF ou CNPJ -->
         <div>
           <label for="cpf" class="block text-gray-700 font-medium mb-1"
             >CPF/CNPJ</label
@@ -133,6 +136,8 @@
             required
           />
         </div>
+
+        <!-- Data de Nascimento -->
         <div>
           <label for="data-nasc" class="block text-gray-700 font-medium mb-1"
             >Data de Nascimento</label
@@ -140,12 +145,12 @@
           <input
             type="date"
             id="data-nasc"
-            placeholder="Data de Nascimento"
             class="w-full border p-2 rounded-[8px]"
             required
           />
         </div>
 
+        <!-- Email -->
         <div>
           <label for="email" class="block text-gray-700 font-medium mb-1"
             >Email (opcional)</label
@@ -153,11 +158,12 @@
           <input
             type="email"
             id="email"
-            placeholder="Email (opcional)"
+            placeholder="Email"
             class="w-full border p-2 rounded-[8px]"
           />
         </div>
 
+        <!-- Telefone -->
         <div>
           <label for="telefone" class="block text-gray-700 font-medium mb-1"
             >Telefone</label
@@ -171,12 +177,94 @@
           />
         </div>
 
+        <!-- CEP -->
+        <div>
+          <label for="cep" class="block text-gray-700 font-medium mb-1"
+            >CEP</label
+          >
+          <input
+            type="text"
+            id="cep"
+            placeholder="CEP"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+
+        <!-- Rua -->
+        <div>
+          <label for="rua" class="block text-gray-700 font-medium mb-1"
+            >Rua</label
+          >
+          <input
+            type="text"
+            id="rua"
+            placeholder="Rua"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+
+        <!-- Número -->
+        <div>
+          <label for="numero" class="block text-gray-700 font-medium mb-1"
+            >Número</label
+          >
+          <input
+            type="text"
+            id="numero"
+            placeholder="Número"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+
+        <!-- Bairro -->
+        <div>
+          <label for="bairro" class="block text-gray-700 font-medium mb-1"
+            >Bairro</label
+          >
+          <input
+            type="text"
+            id="bairro"
+            placeholder="Bairro"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+
+        <!-- Cidade -->
+        <div>
+          <label for="cidade" class="block text-gray-700 font-medium mb-1"
+            >Cidade</label
+          >
+          <input
+            type="text"
+            id="cidade"
+            placeholder="Cidade"
+            class="w-full border p-2 rounded-[8px]"
+          />
+        </div>
+
+        <!-- Estado (UF) -->
+        <div>
+          <label for="estado" class="block text-gray-700 font-medium mb-1"
+            >Estado (UF)</label
+          >
+          <input
+            type="text"
+            id="estado"
+            placeholder="Ex: SP, RJ, CE..."
+            class="w-full border p-2 rounded-[8px]"
+            maxlength="2"
+          />
+        </div>
+
+        <!-- Botão de envio -->
         <button
           type="submit"
           class="w-full bg-green-500 text-white py-2 rounded-[8px] hover:bg-green-600"
         >
           Cadastrar
         </button>
+
+        <!-- Mensagem de retorno -->
         <div id="msg" class="text-green-600 font-medium text-center"></div>
       </form>
     </main>

@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
 
   try {
     await db.query(
-      "INSERT INTO veiculos (modelo, marca, ano, preco, status) VALUES ($1, $2, $3, $4, $5)",
+      "INSERT INTO carros (modelo, marca, ano_modelo, preco, status) VALUES ($1, $2, $3, $4, $5)",
       [modelo, marca, ano, preco, status]
     );
     res.status(201).json({ message: "Carro criado com sucesso." });
@@ -32,8 +32,8 @@ router.post("/array", async (req, res) => {
   const dados = Array.isArray(req.body) ? req.body : [req.body];
 
   try {
-    for (const veiculo of dados) {
-      const { modelo, marca, ano, preco, status } = veiculo;
+    for (const carro of dados) {
+      const { modelo, marca, ano, preco, status } = carro;
 
       if (!modelo || !marca || !ano || preco === undefined || !status) {
         return res.status(400).json({
@@ -43,7 +43,7 @@ router.post("/array", async (req, res) => {
       }
 
       await db.query(
-        "INSERT INTO veiculos (modelo, marca, ano, preco, status) VALUES ($1, $2, $3, $4, $5)",
+        "INSERT INTO carros (modelo, marca, ano_modelo, preco, status) VALUES ($1, $2, $3, $4, $5)",
         [modelo, marca, ano, preco, status]
       );
     }
@@ -58,7 +58,7 @@ router.post("/array", async (req, res) => {
 // READ (todos)
 router.get("/", async (req, res) => {
   try {
-    const result = await db.query("SELECT * FROM veiculos");
+    const result = await db.query("SELECT * FROM carros");
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Nenhum Carro encontrado." });
     }
@@ -73,7 +73,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await db.query("SELECT * FROM veiculos WHERE id = $1", [id]);
+    const result = await db.query("SELECT * FROM carros WHERE id = $1", [id]);
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Carro não encontrado." });
     }
@@ -91,7 +91,7 @@ router.put("/:id", async (req, res) => {
 
   try {
     const result = await db.query(
-      "UPDATE veiculos SET modelo = $1, marca = $2, ano = $3, preco = $4, status = $5 WHERE id = $6",
+      "UPDATE carros SET modelo = $1, marca = $2, ano_modelo = $3, preco = $4, status = $5 WHERE id = $6",
       [modelo, marca, ano, preco, status, id]
     );
 

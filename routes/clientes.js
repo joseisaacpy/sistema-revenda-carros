@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
   try {
     await db.query(
-      `INSERT INTO clientes (nome, cpf, dataNascimento, email, telefone) VALUES ($1, $2, $3, $4, $5)`,
+      `INSERT INTO clientes (nome, cpf_cnpj, dataNascimento, email, telefone_celular) VALUES ($1, $2, $3, $4, $5)`,
       [nome, cpf, dataNascimento, email, telefone]
     );
     res.status(201).json({ message: "Cliente criado com sucesso." });

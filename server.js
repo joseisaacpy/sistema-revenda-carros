@@ -35,7 +35,8 @@ app.use("/api/carros", carrosRoutes);
 
 // ROTAS DE PÁGINAS
 app.get("/", (req, res) => {
-  res.sendFile(join(__dirname, "views", "index.html"));
+  // res.sendFile(join(__dirname, "views", "index.html"));
+  res.sendFile(join(__dirname, "views", "dashboard.html"));
 });
 
 app.get("/login", (req, res) => {
@@ -58,7 +59,7 @@ app.get("/listar-clientes", (req, res) => {
   res.sendFile(join(__dirname, "views", "listar-clientes.html"));
 });
 
-app.get("/listar-veiculos", (req, res) => {
+app.get("/listar-carros", (req, res) => {
   res.sendFile(join(__dirname, "views", "listar-carros.html"));
 });
 
