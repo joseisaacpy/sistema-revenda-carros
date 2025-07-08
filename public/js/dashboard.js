@@ -1,35 +1,47 @@
 async function carregarDashboard() {
   try {
+    // Faz uma requisição para todas as APIs
+    const [clientesRes, carrosRes, vendasRes] = await Promise.all([
+      fetch("/api/clientes"),
+      fetch("/api/carros"),
+      fetch("/api/vendas"),
+    ]);
+
+    // Pega o json de cada requisição
+    const [clientes, carros, vendas] = await Promise.all([
+      clientesRes.json(),
+      carrosRes.json(),
+      vendasRes.json(),
+    ]);
+
     // Total de clientes
-    const clientesRes = await fetch("/api/clientes");
-    const clientes = await clientesRes.json();
-    document.getElementById("total-clientes").textContent = clientes.length;
+    const totalClientes = clientes?.length || 0;
+    document.getElementById("total-clientes").textContent = totalClientes;
 
-    // Veículos disponíveis
-    const carrosRes = await fetch("/api/carros");
-    const carros = await carrosRes.json();
-    const disponiveis = carros.filter(
-      (c) => c.status_estoque === "Disponível"
-    ).length;
-    const vendidos = carros.filter(
-      (c) => c.status_estoque === "Indisponivel"
-    ).length;
+    // Veículos
+    const status = carros?.reduce(
+      (acc, carro) => {
+        if (carro.status_estoque === "Estoque") acc.disponiveis++;
+        else if (carro.status_estoque === "Vendido") acc.vendidos++;
+        return acc;
+      },
+      { disponiveis: 0, vendidos: 0 }
+    );
 
-    document.getElementById("veiculos-disponiveis").textContent = disponiveis;
-    document.getElementById("veiculos-vendidos").textContent = vendidos;
+    document.getElementById("veiculos-disponiveis").textContent =
+      status.disponiveis;
+    document.getElementById("veiculos-vendidos").textContent = status.vendidos;
 
-    // Última venda (vai depender da sua entidade venda)
-    const vendasRes = await fetch("/api/vendas");
-    const vendas = await vendasRes.json();
-
-    if (vendas.length > 0) {
-      const ultima = vendas[vendas.length - 1];
-      document.getElementById("ultima-venda").textContent = `${new Date(
-        ultima.data
-      ).toLocaleDateString("pt-BR")}`;
+    // Última venda
+    if (vendas?.length > 0) {
+      const ultimaVenda = vendas[vendas.length - 1];
+      const dataFormatada = new Date(ultimaVenda.data).toLocaleDateString(
+        "pt-BR"
+      );
+      document.getElementById("ultima-venda").textContent = dataFormatada;
     }
   } catch (err) {
-    console.error("Erro ao carregar dados do dashboard", err);
+    console.error("Erro ao carregar dados do dashboard:", err);
   }
 }
 

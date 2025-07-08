@@ -17,7 +17,7 @@ async function listarVeiculos() {
   if (data.length === 0 || data.length === undefined) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="5" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum veiculo cadastrado</td>
+        <td colspan="7" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum veiculo cadastrado</td>
       </tr>
     `;
     return;
@@ -25,7 +25,7 @@ async function listarVeiculos() {
 
   // Lista dos veículos em formato de tabela
   data.forEach((veiculo) => {
-    const anoFabricacao = new Date(veiculo.ano).getFullYear();
+    const anoFabricacao = new Date(veiculo.ano_modelo).getFullYear();
     const row = document.createElement("tr");
     row.classList.add("border-2", "border-gray-300", "p-2");
     row.innerHTML = `
@@ -33,9 +33,9 @@ async function listarVeiculos() {
     <td class="border-2 border-gray-300 p-1">${veiculo.marca}</td>
     <td class="border-2 border-gray-300 p-1">${anoFabricacao}</td>
     <td class="border-2 border-gray-300 p-1">${Number(
-      veiculo.preco
+      veiculo.valor_venda_sugerido
     ).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
-      <td class="border-2 border-gray-300 p-1">${veiculo.status}</td>
+      <td class="border-2 border-gray-300 p-1">${veiculo.status_estoque}</td>
         <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
   <button class="editar-veiculo text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${
     veiculo.id_carro

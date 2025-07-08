@@ -11,7 +11,7 @@ dotenv.config();
 // IMPORTS DAS ROTAS
 import clientesRoutes from "./routes/clientes.js";
 import carrosRoutes from "./routes/carros.js";
-// import vendasRoutes from "./routes/vendas.js";
+import vendasRoutes from "./routes/vendas.js";
 // import fornecedoresRoutes from "./routes/fornecedores.js";
 // import comprasCarrosRoutes from "./routes/comprasCarros.js";
 
@@ -29,7 +29,7 @@ app.use(express.static(join(__dirname, "public")));
 // ROTAS DE API
 app.use("/api/clientes", clientesRoutes);
 app.use("/api/carros", carrosRoutes);
-// app.use("/api/vendas", vendasRoutes);
+app.use("/api/vendas", vendasRoutes);
 // app.use("/api/fornecedores", fornecedoresRoutes);
 // app.use("/api/compras-carros", comprasCarrosRoutes);
 

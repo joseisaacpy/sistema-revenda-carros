@@ -17,7 +17,7 @@ async function listarClientes() {
   if (data.length === 0 || data.length === undefined) {
     tbody.innerHTML = `
         <tr>
-          <td colspan="6" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum cliente cadastrado</td>
+          <td colspan="12" class="text-center border-2 border-gray-300 p-1 font-bold">Nenhum cliente cadastrado</td>
         </tr>
       `;
   }
