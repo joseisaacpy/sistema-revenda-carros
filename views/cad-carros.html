@@ -67,7 +67,7 @@
           </li>
           <li>
             <a
-              href="/cad-veiculos"
+              href="/cad-carros"
               title="Cadastro de Veículos"
               class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
             >
@@ -76,7 +76,7 @@
           </li>
           <li>
             <a
-              href="/listar-veiculos"
+              href="/listar-carros"
               title="Listagem de Veículos"
               class="transition-all duration-200 hover:bg-white hover:text-black w-12 h-12 flex items-center justify-center rounded"
             >
@@ -99,89 +99,227 @@
 
     <!-- Main -->
     <main class="w-[100%] flex flex-col items-center p-3 rounded-2xl">
+      <!-- Titulo -->
       <h1 class="text-3xl font-bold mb-6">Cadastrar Veículo</h1>
-
+      <!-- Formulário -->
       <form
         id="veiculoForm"
-        class="w-[100%] md:w-[50%] bg-white p-6 rounded shadow space-y-4"
+        class="w-full md:w-[50%] bg-white p-6 rounded shadow-2xl space-y-4"
       >
-        <div>
-          <label for="modelo" class="block text-gray-700 font-medium mb-1"
-            >Modelo</label
-          >
-          <input
-            type="text"
-            id="modelo"
-            placeholder="Modelo"
-            class="w-full border p-2 rounded-[8px]"
-            required
-          />
+        <!-- Modelo + Marca -->
+        <div class="md:flex md:space-x-4">
+          <div class="md:w-1/2">
+            <label for="modelo" class="block text-gray-700 font-medium mb-1"
+              >Modelo</label
+            >
+            <input
+              type="text"
+              id="modelo"
+              name="modelo"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: Civic"
+              required
+            />
+          </div>
+
+          <div class="md:w-1/2">
+            <label for="marca" class="block text-gray-700 font-medium mb-1"
+              >Marca</label
+            >
+            <input
+              type="text"
+              id="marca"
+              name="marca"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: Honda"
+              required
+            />
+          </div>
         </div>
 
-        <div>
-          <label for="marca" class="block text-gray-700 font-medium mb-1"
-            >Marca</label
-          >
-          <input
-            type="text"
-            id="marca"
-            placeholder="Marca"
-            class="w-full border p-2 rounded-[8px]"
-            required
-          />
+        <!-- Chassi + Placa -->
+        <div class="md:flex md:space-x-4">
+          <div class="md:w-1/2">
+            <label for="chassi" class="block text-gray-700 font-medium mb-1"
+              >Chassi</label
+            >
+            <input
+              type="text"
+              id="chassi"
+              name="chassi"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: 9BG148LK0GC404193"
+              required
+            />
+          </div>
+
+          <div class="md:w-1/2">
+            <label for="placa" class="block text-gray-700 font-medium mb-1"
+              >Placa</label
+            >
+            <input
+              type="text"
+              id="placa"
+              name="placa"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: PIM8D48"
+              required
+            />
+          </div>
+        </div>
+        <!-- Ano modelo + Cor -->
+        <div class="md:flex md:space-x-4">
+          <div class="md:w-1/2">
+            <label for="ano_modelo" class="block text-gray-700 font-medium mb-1"
+              >Ano do Modelo</label
+            >
+            <input
+              type="number"
+              id="ano_modelo"
+              name="ano_modelo"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: 2022"
+              required
+            />
+          </div>
+
+          <div class="md:w-1/2">
+            <label for="cor" class="block text-gray-700 font-medium mb-1"
+              >Cor</label
+            >
+            <input
+              type="text"
+              id="cor"
+              name="cor"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: Prata"
+              required
+            />
+          </div>
         </div>
 
+        <!-- combustível -->
         <div>
-          <label for="ano" class="block text-gray-700 font-medium mb-1"
-            >Ano do Veículo</label
-          >
-          <input
-            type="date"
-            id="ano"
-            placeholder="Ano do Veículo"
-            class="w-full border p-2 rounded-[8px]"
-          />
-        </div>
-
-        <div>
-          <label for="preco" class="block text-gray-700 font-medium mb-1"
-            >Preço</label
-          >
-          <input
-            type="text"
-            id="preco"
-            placeholder="Preço"
-            class="w-full border p-2 rounded-[8px]"
-            required
-          />
-        </div>
-
-        <div>
-          <label for="status" class="block text-gray-700 font-medium mb-1"
-            >Status</label
+          <label for="combustivel" class="block text-gray-700 font-medium mb-1"
+            >Combustível</label
           >
           <select
+            id="combustivel"
+            name="combustivel"
             class="w-full border p-2 rounded-[8px]"
-            name="status"
-            id="status"
             required
           >
-            <option value="" disabled selected>Selecione o status:</option>
-            <option value="Disponivel">Disponível</option>
-            <option value="Indisponivel">Indisponível</option>
+            <option value="" disabled selected>
+              Selecione o tipo de combustível
+            </option>
+            <option value="Gasolina">Gasolina</option>
+            <option value="Álcool">Álcool</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Flex">Flex</option>
+            <option value="Elétrico">Elétrico</option>
           </select>
         </div>
 
+        <!-- km -->
+        <div>
+          <label for="km" class="block text-gray-700 font-medium mb-1"
+            >Quilometragem (KM)</label
+          >
+          <input
+            type="number"
+            id="km"
+            name="km"
+            class="w-full border p-2 rounded-[8px]"
+            placeholder="Ex: 10000"
+            required
+          />
+        </div>
+
+        <!-- Valor de compra + Valor de venda sugerido -->
+        <div class="md:flex md:space-x-4">
+          <div class="md:w-1/2">
+            <label
+              for="valor_compra"
+              class="block text-gray-700 font-medium mb-1"
+              >Valor de Compra</label
+            >
+            <input
+              type="number"
+              id="valor_compra"
+              name="valor_compra"
+              step="0.01"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: 50000"
+              required
+            />
+          </div>
+
+          <div class="md:w-1/2">
+            <label
+              for="valor_venda_sugerido"
+              class="block text-gray-700 font-medium mb-1"
+              >Valor de Venda Sugerido</label
+            >
+            <input
+              type="number"
+              id="valor_venda_sugerido"
+              name="valor_venda_sugerido"
+              step="0.01"
+              class="w-full border p-2 rounded-[8px]"
+              placeholder="Ex: 60000"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- status_estoque -->
+        <div>
+          <label
+            for="status_estoque"
+            class="block text-gray-700 font-medium mb-1"
+            >Status do Estoque</label
+          >
+          <select
+            id="status_estoque"
+            name="status_estoque"
+            class="w-full border p-2 rounded-[8px]"
+            required
+          >
+            <option value="" disabled selected>Selecione o status</option>
+            <option value="Disponível">Disponível</option>
+            <option value="Indisponível">Indisponível</option>
+            <option value="Reservado">Reservado</option>
+            <option value="Vendido">Vendido</option>
+          </select>
+        </div>
+
+        <!-- data_compra -->
+        <div>
+          <label for="data_compra" class="block text-gray-700 font-medium mb-1"
+            >Data da Compra</label
+          >
+          <input
+            type="date"
+            id="data_compra"
+            name="data_compra"
+            class="w-full border p-2 rounded-[8px]"
+            placeholder="Ex: 2022-01-01"
+            required
+          />
+        </div>
+
+        <!-- Botão -->
         <button
           type="submit"
           class="w-full bg-green-500 text-white py-2 rounded-[8px] hover:bg-green-600"
         >
           Cadastrar
         </button>
+
         <div id="msg" class="text-green-600 font-medium text-center"></div>
       </form>
     </main>
 
-    <script type="module" src="/js/cad-veiculos.js"></script>
+    <script type="module" src="/js/cad-carros.js"></script>
   </body>
 </html>

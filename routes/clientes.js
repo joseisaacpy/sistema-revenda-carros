@@ -137,7 +137,10 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await db.query("DELETE FROM clientes WHERE id = $1", [id]);
+    const result = await db.query(
+      "DELETE FROM clientes WHERE id_cliente = $1",
+      [id]
+    );
     res.json({ message: "Cliente deletado com sucesso." });
     // Valida se o cliente foi deletado
     if (result.rowCount === 0) {

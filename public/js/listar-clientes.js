@@ -51,12 +51,12 @@ async function listarClientes() {
   <td class="border-2 border-gray-300 p-1">${cliente.estado || "-"}</td>
   <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
     <button class="editar-cliente text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${
-      cliente.id
+      cliente.id_cliente
     }" data-name="${cliente.nome}">
       <i class="fa-solid fa-pen-to-square"></i>
     </button>
     <button class="excluir-cliente text-red-600 hover:text-red-800 cursor-pointer" data-id="${
-      cliente.id
+      cliente.id_cliente
     }" data-name="${cliente.nome}">
       <i class="fa-solid fa-trash"></i>
     </button>

@@ -8,8 +8,12 @@ async function carregarDashboard() {
     // Veículos disponíveis
     const carrosRes = await fetch("/api/carros");
     const carros = await carrosRes.json();
-    const disponiveis = carros.filter((c) => c.status === "Disponivel").length;
-    const vendidos = carros.filter((c) => c.status === "Indisponivel").length;
+    const disponiveis = carros.filter(
+      (c) => c.status_estoque === "Disponível"
+    ).length;
+    const vendidos = carros.filter(
+      (c) => c.status_estoque === "Indisponivel"
+    ).length;
 
     document.getElementById("veiculos-disponiveis").textContent = disponiveis;
     document.getElementById("veiculos-vendidos").textContent = vendidos;

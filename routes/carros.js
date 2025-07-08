@@ -7,51 +7,65 @@ const router = express.Router();
 
 // CREATE (único Carro)
 router.post("/", async (req, res) => {
-  const { modelo, marca, ano, preco, status } = req.body;
+  const {
+    chassi,
+    placa,
+    marca,
+    modelo,
+    ano_modelo,
+    cor,
+    combustivel,
+    km,
+    valor_compra,
+    valor_venda_sugerido,
+    status_estoque,
+    data_compra,
+  } = req.body;
 
-  if (!modelo || !marca || !ano || !preco || !status) {
-    return res
-      .status(400)
-      .json({ error: "Modelo, Marca, Ano, Preço e Status são obrigatórios." });
+  // Validação simples
+  if (
+    !chassi ||
+    !placa ||
+    !marca ||
+    !modelo ||
+    !ano_modelo ||
+    !cor ||
+    !combustivel ||
+    !km ||
+    !valor_compra ||
+    !valor_venda_sugerido ||
+    !status_estoque ||
+    !data_compra
+  ) {
+    return res.status(400).json({
+      error: "Todos os campos são obrigatórios.",
+    });
   }
 
   try {
     await db.query(
-      "INSERT INTO carros (modelo, marca, ano_modelo, preco, status) VALUES ($1, $2, $3, $4, $5)",
-      [modelo, marca, ano, preco, status]
+      `INSERT INTO carros 
+      (chassi, placa, marca, modelo, ano_modelo, cor, combustivel, km, valor_compra, valor_venda_sugerido, status_estoque, data_compra) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+      [
+        chassi,
+        placa,
+        marca,
+        modelo,
+        ano_modelo,
+        cor,
+        combustivel,
+        km,
+        valor_compra,
+        valor_venda_sugerido,
+        status_estoque,
+        data_compra,
+      ]
     );
-    res.status(201).json({ message: "Carro criado com sucesso." });
+    res.status(201).json({ message: "Carro cadastrado com sucesso." });
   } catch (error) {
-    console.error("Erro ao criar Carro:", error);
-    res.status(500).json({ error: "Erro ao criar Carro." });
-  }
-});
-
-// CREATE (múltiplos Carros)
-router.post("/array", async (req, res) => {
-  const dados = Array.isArray(req.body) ? req.body : [req.body];
-
-  try {
-    for (const carro of dados) {
-      const { modelo, marca, ano, preco, status } = carro;
-
-      if (!modelo || !marca || !ano || preco === undefined || !status) {
-        return res.status(400).json({
-          error:
-            "Modelo, Marca, Ano, Preço e Status são obrigatórios em todos os objetos.",
-        });
-      }
-
-      await db.query(
-        "INSERT INTO carros (modelo, marca, ano_modelo, preco, status) VALUES ($1, $2, $3, $4, $5)",
-        [modelo, marca, ano, preco, status]
-      );
-    }
-
-    res.status(201).json({ message: "Carros cadastrados com sucesso." });
-  } catch (error) {
-    console.error("Erro ao cadastrar Carros em lote:", error);
-    res.status(500).json({ error: "Erro ao cadastrar Carros." });
+    console.error("Erro ao cadastrar carro:", error);
+    res.status(500).json({ error: "Erro ao cadastrar carro." });
   }
 });
 
@@ -87,12 +101,41 @@ router.get("/:id", async (req, res) => {
 // UPDATE
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { modelo, marca, ano, preco, status } = req.body;
+  const {
+    chassi,
+    placa,
+    marca,
+    modelo,
+    ano_modelo,
+    cor,
+    combustivel,
+    km,
+    valor_compra,
+    valor_venda_sugerido,
+    status_estoque,
+    data_compra,
+  } = req.body;
 
   try {
     const result = await db.query(
-      "UPDATE carros SET modelo = $1, marca = $2, ano_modelo = $3, preco = $4, status = $5 WHERE id = $6",
-      [modelo, marca, ano, preco, status, id]
+      `UPDATE carros 
+      SET chassi = $1, placa = $2, marca = $3, modelo = $4, ano_modelo = $5, cor = $6, combustivel = $7, km = $8, valor_compra = $9, valor_venda_sugerido = $10, status_estoque = $11, data_compra = $12
+      WHERE id = $13`,
+      [
+        chassi,
+        placa,
+        marca,
+        modelo,
+        ano_modelo,
+        cor,
+        combustivel,
+        km,
+        valor_compra,
+        valor_venda_sugerido,
+        status_estoque,
+        data_compra,
+        id,
+      ]
     );
 
     if (result.rowCount === 0) {
@@ -111,7 +154,9 @@ router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await db.query("DELETE FROM carros WHERE id = $1", [id]);
+    const result = await db.query("DELETE FROM carros WHERE id_carro = $1", [
+      id,
+    ]);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Carro não encontrado." });

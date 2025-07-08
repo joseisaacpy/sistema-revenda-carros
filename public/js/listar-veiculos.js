@@ -38,12 +38,12 @@ async function listarVeiculos() {
       <td class="border-2 border-gray-300 p-1">${veiculo.status}</td>
         <td class="border-2 border-gray-300 p-1 flex gap-2 items-center justify-around">
   <button class="editar-veiculo text-blue-600 hover:text-blue-800 cursor-pointer" data-id="${
-    veiculo.id
+    veiculo.id_carro
   }" data-name="${
       veiculo.modelo
     }"><i class="fa-solid fa-pen-to-square"></i></button>
   <button class="excluir-veiculo text-red-600 hover:text-red-800 cursor-pointer" data-id="${
-    veiculo.id
+    veiculo.id_carro
   }" data-name="${veiculo.modelo}"><i class="fa-solid fa-trash"></i></button>
 </td>
     `;
