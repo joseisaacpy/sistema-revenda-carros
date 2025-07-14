@@ -7,15 +7,7 @@ dotenv.config();
 
 // Instancia o Postgre
 const { Pool } = pg;
-// Cria o pool
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl:
-//     process.env.NODE_ENV === "production"
-//       ? { rejectUnauthorized: false }
-//       : false,
-// });
-//
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl:
@@ -23,6 +15,19 @@ const pool = new Pool({
       ? { rejectUnauthorized: false }
       : false,
 });
+
+// Função para conectar ao banco de dados
+const conectarDB = async () => {
+  try {
+    await pool.connect();
+    console.log("Conexão com o banco de dados estabelecida com sucesso!");
+  } catch (error) {
+    console.error("Erro ao conectar ao banco de dados:", error);
+  }
+};
+
+// Chama a função para conectar ao banco de dados
+conectarDB();
 
 // Exporta o banco
 export default pool;

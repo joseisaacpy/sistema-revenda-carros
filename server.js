@@ -4,7 +4,6 @@ import db from "./database/db.js";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import dotenv from "dotenv";
-
 // CONFIGURAÇÃO DO DOTENV
 dotenv.config();
 
