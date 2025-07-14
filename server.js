@@ -15,7 +15,8 @@ import vendasRoutes from "./routes/vendas.js";
 // import comprasCarrosRoutes from "./routes/comprasCarros.js";
 
 // CONSTANTES
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
+
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
